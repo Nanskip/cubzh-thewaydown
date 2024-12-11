@@ -87,7 +87,9 @@ function mod.generate()
                     end
 
                     if ok then
-                        mod.map[y][x][1] = i
+                        if math.random(1, 1/ore.chance) == 1 then
+                            mod.map[y][x][2] = i
+                        end
                     end
                 end
             end
@@ -111,8 +113,8 @@ function mod.build()
             if ore ~= nil then
                 local shape = Shape(Items.nanskip.conv_ore_coal)
 
-                shape.Palette[1].Color = ore.color
-                shape.Palette[2].Color = Color(ore.color.R-10, ore.color.G-10, ore.color.B-10)
+                shape.Palette[0].Color = ore.color
+                shape.Palette[1].Color = Color(ore.color.R-10, ore.color.G-10, ore.color.B-10)
 
                 shape.Rotation.X = -math.pi
                 shape.Position = Number3(x, y, 0)
