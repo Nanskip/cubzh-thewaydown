@@ -44,6 +44,12 @@ game.start = function()
             _beatTick = _beatTick + dt
             if _beatTick > 1.008 then
                 _beatTick = _beatTick - 1.008
+                _offsetfix = _offsetfix + 1
+                if _offsetfix >= 3 then
+                    _offsetfix = 0
+                    game.beat:Stop()
+                    game.beat:Play()
+                end
                 
                 if _currentrot == "right" then
                     _PLAYER:move(Number3(1, 0, 0))
@@ -66,6 +72,7 @@ game.play = function()
     game.beat.Loop = true
     game.beat:Play()
     _beatTick = 0
+    _offsetfix = 0
 
     _PLAYING = true
 end
