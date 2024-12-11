@@ -16,9 +16,9 @@ function mod.generate()
 
     mod.map = {}
     for y = 0, height do
-        map[y] = {}
+        mod.map[y] = {}
         for x = 0, width do
-            map[y][x] = math.random(0, 2)
+            mod.map[y][x] = math.random(0, 2)
         end
     end
 end
