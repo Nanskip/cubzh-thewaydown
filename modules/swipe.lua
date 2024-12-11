@@ -49,10 +49,10 @@ mod.listen = function()
         mod.lastmove = {payload.X, payload.Y}
     end)
 
-    mod.right = function() print("right") end
-    mod.left = function() print("left") end
-    mod.up = function() print("up") end
-    mod.down = function() print("down") end
+    mod.right = function() end
+    mod.left = function()  end
+    mod.up = function() end
+    mod.down = function() end
 end
 
 return mod
