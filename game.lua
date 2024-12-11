@@ -61,6 +61,7 @@ end
 
 game.play = function()
     game.beat = AudioSource()
+    game.beat:SetParent(Camera)
     game.beat.Sound = _SOUNDS.beat
     game.beat.Loop = true
     game.beat:Play()
