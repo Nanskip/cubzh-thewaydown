@@ -27,7 +27,7 @@ mod.spawn = function()
             self.cords[1] = self.cords[1] + dir.X
             self.cords[2] = self.cords[2] + dir.Y
 
-            self.Position =  self.Position + Number3(self.cords[1]*10, self.cords[2]*10, 0.35)
+            self.Position =  self.Position + Number3(self.cords[1]/10, self.cords[2]/10, 0.35)
         end
     end
 
