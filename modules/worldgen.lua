@@ -25,6 +25,9 @@ end
 
 function mod.build()
     mod.mapObject = MutableShape()
+    local height = 30
+    local width = 10
+    
     for y = 0, height do
         for x = 0, width do
             local color = mod.tiles[mod.map[y][x]]
