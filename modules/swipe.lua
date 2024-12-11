@@ -33,6 +33,8 @@ mod.listen = function()
                             mod.down()
                         end
                     end
+
+                    mod.lastmove = {mod.lastclick[1], mod.lastclick[2]}
                 end
             end)
         end
