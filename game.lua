@@ -42,7 +42,7 @@ game.start = function()
 
         if _PLAYING then
             _beatTick = _beatTick + dt
-            if _beatTick > 1 then
+            if _beatTick >= 1.05 then
                 _beatTick = 0
                 
                 if _currentrot == "right" then
