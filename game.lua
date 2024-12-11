@@ -33,6 +33,7 @@ game.start = function()
     end
 
     Camera:SetModeFree()
+    Camera.Rotation = Rotation(0, 0, 0)
     Camera.FOV = 25
     Camera.Tick = function(self, dt)
         self.Position = _PLAYER.Position + Number3(0, 0, -10)
@@ -56,6 +57,16 @@ game.start = function()
             end
         end
     end
+end
+
+game.play = function()
+    game.beat = AudioSource()
+    game.beat.Sound = _SOUNDS.beat
+    game.beat.Loop = true
+    game.beat:Play()
+    _beatTick = 0
+
+    _PLAYING = true
 end
 
 return game
