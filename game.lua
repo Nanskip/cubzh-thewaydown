@@ -42,8 +42,8 @@ game.start = function()
 
         if _PLAYING then
             _beatTick = _beatTick + dt
-            if _beatTick >= 1.04 then
-                _beatTick = _beatTick - 1.04
+            if _beatTick > 0.96 then
+                _beatTick = _beatTick - 0.96
                 
                 if _currentrot == "right" then
                     _PLAYER:move(Number3(1, 0, 0))
