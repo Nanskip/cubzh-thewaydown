@@ -120,12 +120,14 @@ function mod.build()
                 end
 
                 shape.Rotation.X = -math.pi/2
-                shape.Position = Number3(x+0.5, y+0.5, 0.2)
+                shape.Position = Number3(x+0.5, -y-0.5, 0.2)
                 shape.Scale = 0.1
                 shape:SetParent(World)
             end
         end
     end
+    mod.mapObject.Rotation.X = math.pi
+    mod.mapObject.Pivot.Z = 1
     mod.mapObject:SetParent(World)
 end
 

@@ -1,13 +1,13 @@
 Config = {
     Map = nil,
     Items = {
-        "nanskip.conv_ore_coal",
+        "nanskip.conv_ore_coal", "nanskip.dril"
     }
 }
 
 function Client.OnStart()
     _DEBUG = true
-    _HASH = "1c1180f"
+    _HASH = "a1de46d"
 
     _LATEST_LINK = "https://raw.githubusercontent.com/Nanskip/cubzh-thewaydown/" .. _HASH .. "/"
     _LOADALL()
@@ -16,6 +16,7 @@ end
 _LOAD_LIST = {
     modules = {
         worldgen = "modules/worldgen.lua",
+        player = "modules/player.lua",
     },
     images = {
 
