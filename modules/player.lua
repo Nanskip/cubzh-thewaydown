@@ -6,7 +6,7 @@ end
 
 mod.spawn = function()
     local player = Shape(Items.nanskip.dril)
-    player.Position = Number3(5.5, 0, 0)
+    player.Position = Number3(5.5, 0.5, 0.35)
     player.Scale = 0.1
 
     player.Rotation.Y = math.pi

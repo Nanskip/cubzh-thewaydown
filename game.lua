@@ -10,7 +10,7 @@ game.start = function()
     _PLAYER = player.spawn()
 
     Camera:SetModeFree()
-    Camera.FOV = 20
+    Camera.FOV = 25
     Camera.Tick = function(self, dt)
         self.Position = _PLAYER.Position + Number3(0, 0, -10)
     end
