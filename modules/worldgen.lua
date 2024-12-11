@@ -87,7 +87,7 @@ function mod.generate()
                     end
 
                     if ok then
-                        if math.random(1, 1/ore.chance) == 1 then
+                        if math.random(1, 1//ore.chance) == 1 then
                             mod.map[y][x][2] = i
                         end
                     end
