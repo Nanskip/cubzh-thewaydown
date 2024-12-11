@@ -24,8 +24,8 @@ mod.spawn = function()
         local tile = worldgen.map[self.cords[2]-dir.Y][self.cords[1]+dir.X]
         if tile ~= nil then
             if tile[2] ~= nil then
-                log("Got ore: " .. tile[2] .. " at [" .. self.cords[1] .. ", " .. self.cords[2] .. "]. Cost: " .. worldgen.ores[tile[2]].cost)
-                local ore = worldgen.shapes[self.cords[2]-dir.Y][self.cords[1]+dir.X]
+                log("Got ore: " .. worldgen.ores[tile[2]].name .. " at [" .. self.cords[1] .. ", " .. self.cords[2] .. "]. Cost: " .. worldgen.ores[tile[2]].cost)
+                local ore = worldgen.mapShapes[self.cords[2]-dir.Y][self.cords[1]+dir.X]
                 if ore ~= nil then
                     ore:SetParent(nil)
                     ore = nil
