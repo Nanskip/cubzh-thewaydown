@@ -42,6 +42,7 @@ mod.listen = function()
 
     mod.uplistener = LocalEvent:Listen(LocalEvent.Name.PointerUp, function(payload)
         mod._listen = false
+        mod.lastmove = {mod.lastclick[1], mod.lastclick[2]}
     end)
 
     mod.movelistener = LocalEvent:Listen(LocalEvent.Name.PointerDrag, function(payload)
