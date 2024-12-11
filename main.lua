@@ -7,7 +7,7 @@ Config = {
 
 function Client.OnStart()
     _DEBUG = true
-    _HASH = "997ba6e"
+    _HASH = "b0e5e93"
 
     _LATEST_LINK = "https://raw.githubusercontent.com/Nanskip/cubzh-thewaydown/" .. _HASH .. "/"
     _LOADALL()
@@ -17,6 +17,7 @@ _LOAD_LIST = {
     modules = {
         worldgen = "modules/worldgen.lua",
         player = "modules/player.lua",
+        swipe = "modules/swipe.lua",
         game = "game.lua",
     },
     images = {

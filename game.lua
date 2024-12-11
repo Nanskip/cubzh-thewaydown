@@ -8,6 +8,7 @@ game.start = function()
     worldgen.generate()
     worldgen.build()
     _PLAYER = player.spawn()
+    swipe.listen()
 
     Camera:SetModeFree()
     Camera.FOV = 25

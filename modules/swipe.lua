@@ -6,26 +6,26 @@ end
 
 mod.listen = function()
     mod.downlistener = LocalEvent:Listen(LocalEvent.Name.PointerDown, function(payload)
-        if not mod.listen then
+        if not mod._listen then
             mod.lastclick = {payload.X, payload.Y}
-            mod.listen = true
+            mod._listen = true
 
-            Timer(1, function()
-                if mod.listen then
-                    mod.listen = false
+            Timer(0.1, function()
+                if mod._listen then
+                    mod._listen = false
                     local dx = mod.lastclick[1] - mod.lastmove[1]
                     local dy = mod.lastclick[2] - mod.lastmove[2]
 
                     if math.abs(dx) > math.abs(dy) then
-                        if dx > 0 then
+                        if dx < 0 then
                             mod.right()
-                        else
+                        elseif dx > 0 then
                             mod.left()
                         end
                     else
-                        if dy > 0 then
+                        if dy < 0 then
                             mod.up()
-                        else
+                        elseif dy > 0 then
                             mod.down()
                         end
                     end
@@ -35,7 +35,7 @@ mod.listen = function()
     end)
 
     mod.uplistener = LocalEvent:Listen(LocalEvent.Name.PointerUp, function(payload)
-        mod.listen = false
+        mod._listen = false
     end)
 
     mod.movelistener = LocalEvent:Listen(LocalEvent.Name.PointerDrag, function(payload)
