@@ -1,6 +1,10 @@
 local mod = {}
 
 mod.INIT = function()
+    mod.lastmove = {0, 0}
+    mod.lastclick = {0, 0}
+    mod._listen = false
+
     return true
 end
 
@@ -10,7 +14,7 @@ mod.listen = function()
             mod.lastclick = {payload.X, payload.Y}
             mod._listen = true
 
-            Timer(0.1, function()
+            Timer(0.03, function()
                 if mod._listen then
                     mod._listen = false
                     local dx = mod.lastclick[1] - mod.lastmove[1]
