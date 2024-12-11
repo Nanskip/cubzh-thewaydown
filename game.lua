@@ -45,7 +45,7 @@ game.start = function()
             if _beatTick > 1.008 then
                 _beatTick = _beatTick - 1.008
                 _offsetfix = _offsetfix + 1
-                if _offsetfix >= 3 then
+                if _offsetfix >= 4 then
                     _offsetfix = 0
                     game.beat:Stop()
                     game.beat:Play()
