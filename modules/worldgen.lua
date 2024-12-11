@@ -31,6 +31,27 @@ mod.tiles = {
     }
 }
 
+mod.ores = {
+    [0] = {
+        name = "coal",
+        cost = 1,
+        tiles = {
+            0, 1
+        },
+        color = Color(30, 30, 30),
+        chance = 0.1
+    },
+    [1] = {
+        name = "iron",
+        cost = 2,
+        tiles = {
+            1, 2
+        },
+        color = Color(227, 202, 154),
+        chance = 0.1
+    },
+}
+
 function mod.generate()
     local width = 10
 
@@ -39,14 +60,35 @@ function mod.generate()
         local tile = mod.tiles[i]
 
         for y = 0 + tile.minHeight, tile.minHeight + tile.maxHeight + tile.offset do
-            mod.map[y] = {}
+            if mod.map[y] == nil then mod.map[y] = {} end
             for x = 0, width do
                 if y <= tile.minHeight + tile.maxHeight then
-                    if mod.map[y][x] ~= nil then
-                        mod.map[y][x] = i
+                    if mod.map[y][x] == nil then
+                        mod.map[y][x] = {i}
                     end
                 else
-                    mod.map[y][x] = i + math.random(0, 1)
+                    mod.map[y][x] = {i + math.random(0, 1)}
+                end
+            end
+        end
+    end
+
+    for i=0, #mod.ores do
+        local ore = mod.ores[i]
+
+        for y = 0, #mod.map do
+            for x = 0, width do
+                if mod.map[y][x] ~= nil then
+                    local ok = false
+                    for k, v in pairs(ore.tiles) do
+                        if mod.map[y][x][1] == v then
+                            ok = true
+                        end
+                    end
+
+                    if ok then
+                        mod.map[y][x][1] = i
+                    end
                 end
             end
         end
@@ -55,15 +97,27 @@ end
 
 function mod.build()
     mod.mapObject = MutableShape()
-    local height = 30
+    local height = #mod.map
     local width = 10
 
     for y = 0, height do
         for x = 0, width do
-            local tile = mod.tiles[mod.map[y][x]]
+            local tile = mod.tiles[mod.map[y][x][1]]
 
             if tile ~= nil then
                 mod.mapObject:AddBlock(tile.color, Number3(x, y, 0))
+            end
+            local ore = mod.ores[mod.map[y][x][2]]
+            if ore ~= nil then
+                local shape = Shape(Items.nanskip.conv_ore_coal)
+
+                shape.Palette[1].Color = ore.color
+                shape.Palette[2].Color = Color(ore.color.R-10, ore.color.G-10, ore.color.B-10)
+
+                shape.Rotation.X = -math.pi
+                shape.Position = Number3(x, y, 0)
+                shape.Scale = 0.3
+                shape:SetParent(World)
             end
         end
     end

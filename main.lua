@@ -1,13 +1,13 @@
 Config = {
     Map = nil,
     Items = {
-        
+        "nanskip.conv_ore_coal",
     }
 }
 
 function Client.OnStart()
     _DEBUG = true
-    _HASH = "e3e7078"
+    _HASH = "1c1180f"
 
     _LATEST_LINK = "https://raw.githubusercontent.com/Nanskip/cubzh-thewaydown/" .. _HASH .. "/"
     _LOADALL()
