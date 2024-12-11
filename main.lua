@@ -7,7 +7,7 @@ Config = {
 
 function Client.OnStart()
     _DEBUG = true
-    _HASH = "93bf3a8"
+    _HASH = "e3e7078"
 
     _LATEST_LINK = "https://raw.githubusercontent.com/Nanskip/cubzh-thewaydown/" .. _HASH .. "/"
     _LOADALL()
@@ -102,6 +102,10 @@ function _LOAD_IMAGES()
                 _INIT_MODULES()
             end
         end)
+    end
+    if tableLength(_LOAD_LIST.images) == 0 then
+        log("No images to download.")
+        _INIT_MODULES()
     end
 end
 
