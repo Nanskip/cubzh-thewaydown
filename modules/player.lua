@@ -23,6 +23,14 @@ mod.spawn = function()
     player.move = function(self, dir)
         local tile = worldgen.map[self.cords[2]-dir.Y][self.cords[1]+dir.X]
         if tile ~= nil then
+            if tile[2] ~= nil then
+                log("Got ore: " .. tile[2] .. " at [" .. self.cords[1] .. ", " .. self.cords[2] .. "]. Cost: " .. worldgen.ores[tile[2]].cost)
+                local ore = worldgen.shapes[self.cords[2]-dir.Y][self.cords[1]+dir.X]
+                if ore ~= nil then
+                    ore:SetParent(nil)
+                    ore = nil
+                end
+            end
             worldgen.map[self.cords[2]-dir.Y][self.cords[1]+dir.X] = nil
             local block = worldgen.mapObject:GetBlock(Number3(self.cords[1]+dir.X, self.cords[2]-dir.Y, 0))
             if block ~= nil then block:Remove() end

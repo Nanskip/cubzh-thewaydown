@@ -102,7 +102,10 @@ function mod.build()
     local height = #mod.map
     local width = 10
 
+    mod.mapShapes = {}
+
     for y = 0, height do
+        mod.mapShapes[y] = {}
         for x = 0, width do
             local tile = mod.tiles[mod.map[y][x][1]]
 
@@ -123,6 +126,8 @@ function mod.build()
                 shape.Position = Number3(x+0.5, -y-0.5, 0.2)
                 shape.Scale = 0.1
                 shape:SetParent(World)
+
+                mod.mapShapes[y][x] = shape
             end
         end
     end

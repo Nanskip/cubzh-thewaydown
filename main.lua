@@ -7,7 +7,7 @@ Config = {
 
 function Client.OnStart()
     _DEBUG = true
-    _HASH = "818ffe2"
+    _HASH = "0fd5e38"
 
     _LATEST_LINK = "https://raw.githubusercontent.com/Nanskip/cubzh-thewaydown/" .. _HASH .. "/"
     _LOADALL()
