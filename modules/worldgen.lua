@@ -113,12 +113,15 @@ function mod.build()
             if ore ~= nil then
                 local shape = Shape(Items.nanskip.conv_ore_coal)
 
-                shape.Palette[0].Color = ore.color
-                shape.Palette[1].Color = Color(ore.color.R-10, ore.color.G-10, ore.color.B-10)
+                for i=1, shape.ChildrenCount do
+                    local s = shape:GetChild(i)
+                    s.Palette[1].Color = ore.color
+                    s.Palette[2].Color = Color(ore.color.R-10, ore.color.G-10, ore.color.B-10)
+                end
 
-                shape.Rotation.X = -math.pi
-                shape.Position = Number3(x, y, 0)
-                shape.Scale = 0.3
+                shape.Rotation.X = -math.pi/2
+                shape.Position = Number3(x+0.5, y+0.5, 0.3)
+                shape.Scale = 0.1
                 shape:SetParent(World)
             end
         end
