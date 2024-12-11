@@ -16,7 +16,8 @@ game.start = function()
     worldgen.generate()
     worldgen.build()
     _PLAYER = player.spawn()
-    
+    _PLAYING = false
+
     swipe.listen()
     swipe.right = function()
         _currentrot = "right"
@@ -36,7 +37,24 @@ game.start = function()
     Camera.Tick = function(self, dt)
         self.Position = _PLAYER.Position + Number3(0, 0, -10)
 
-        _PLAYER.Rotation:Slerp(_PLAYER.Rotation, Rotation(0, math.pi, _rotations[_currentrot]), 0.1)
+        _PLAYER.Rotation:Slerp(_PLAYER.Rotation, Rotation(0, math.pi, _rotations[_currentrot]), 0.3)
+
+        if _PLAYING then
+            _beatTick = _beatTick + dt
+            if _beatTick > 1 then
+                _beatTick = 0
+                
+                if _currentrot == "right" then
+                    _PLAYER:move(Number3(1, 0, 0))
+                elseif _currentrot == "left" then
+                    _PLAYER:move(Number3(-1, 0, 0))
+                elseif _currentrot == "up" then
+                    _PLAYER:move(Number3(0, 1, 0))
+                elseif _currentrot == "down" then
+                    _PLAYER:move(Number3(0, -1, 0))
+                end
+            end
+        end
     end
 end
 

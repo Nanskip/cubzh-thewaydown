@@ -7,7 +7,7 @@ Config = {
 
 function Client.OnStart()
     _DEBUG = true
-    _HASH = "67a3f30"
+    _HASH = "0001994"
 
     _LATEST_LINK = "https://raw.githubusercontent.com/Nanskip/cubzh-thewaydown/" .. _HASH .. "/"
     _LOADALL()
@@ -24,7 +24,7 @@ _LOAD_LIST = {
 
     },
     sounds = {
-        -- sounds
+        beat = "sounds/60bpm.mp3",
     },
     other = {
         -- other
@@ -110,6 +110,36 @@ function _LOAD_IMAGES()
     end
     if tableLength(_LOAD_LIST.images) == 0 then
         log("No images to download.")
+        _LOAD_SOUNDS()
+    end
+end
+
+
+function _LOAD_SOUNDS()
+    log("Need to download " .. tableLength(_LOAD_LIST.images) .. " sound files.")
+    _IMAGES = {}
+    local downloaded = 0
+
+    for k, v in pairs(_LOAD_LIST.images) do
+        HTTP:Get(_LATEST_LINK .. v, function(response)
+            if response.StatusCode ~= 200 then
+                log("Error downloading [" .. k .. "] sound. Code: " .. response.StatusCode, "ERROR")
+
+                return
+            end
+
+            _IMAGES[k] = response.Body
+            log("Image [".. k.. "] downloaded.")
+
+            downloaded = downloaded + 1
+            if downloaded == tableLength(_LOAD_LIST.images) then
+                log("Downloaded all required sound files.")
+                _INIT_MODULES()
+            end
+        end)
+    end
+    if tableLength(_LOAD_LIST.images) == 0 then
+        log("No sounds to download.")
         _INIT_MODULES()
     end
 end
