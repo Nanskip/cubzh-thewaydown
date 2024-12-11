@@ -24,8 +24,8 @@ mod.spawn = function()
             local block = worldgen.mapObject:GetBlock(Number3(self.cords[1]+dir.X, self.cords[2]+dir.Y, 0))
             block:Remove()
         else
-            self.cords[1] = self.cords[1] + dir.X
-            self.cords[2] = self.cords[2] + dir.Y
+            self.cords[1] = math.round(self.cords[1] + dir.X)
+            self.cords[2] = math.round(self.cords[2] - dir.Y)
 
             self.Position =  self.Position + Number3(self.cords[1]/10, self.cords[2]/10, 0.35)
         end
