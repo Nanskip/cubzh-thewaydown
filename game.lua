@@ -17,6 +17,7 @@ game.start = function()
     worldgen.build()
     _PLAYER = player.spawn()
     _PLAYING = false
+    _SPEED = 1
 
     swipe.listen()
     swipe.right = function()
@@ -40,8 +41,9 @@ game.start = function()
 
         _PLAYER.Rotation:Slerp(_PLAYER.Rotation, Rotation(0, math.pi, _rotations[_currentrot]), 0.3)
 
+        game.beat.Pitch = _SPEED
         if _PLAYING then
-            _beatTick = _beatTick + dt
+            _beatTick = _beatTick + dt * _SPEED
             if _beatTick > 1.008 then
                 _beatTick = _beatTick - 1.008
                 _offsetfix = _offsetfix + 1
